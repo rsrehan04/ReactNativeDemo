@@ -14,7 +14,7 @@ function App() {
     <View style={styles.container}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       {/* <NewAppScreen templateFileName="App.tsx" /> */}
-      <Text >Hello React World!</Text>
+      <Text >Hello React Native World!</Text>
     </View>
   );
 }
