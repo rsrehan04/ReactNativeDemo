@@ -5,17 +5,42 @@
  * @format
  */
 
-import { StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import store, { CounterState } from './src/store';
+
+function Counter() {
+  const dispatch = useDispatch();
+  const count = useSelector((state: CounterState)=> state.count);
+
+  return (
+    <View>
+      <Text>Hello React Native World!</Text>
+      <Text>{count}</Text>
+      <TouchableOpacity onPress={() => dispatch({ type: 'INCREMENT' })}>
+        <Text>+</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => dispatch({ type: 'DECREMENT' })}>
+        <Text>-</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      {/* <NewAppScreen templateFileName="App.tsx" /> */}
-      <Text >Hello React Native World!</Text>
-    </View>
+    <Provider store={store}>
+      <Counter />
+    </Provider>
   );
 }
 
